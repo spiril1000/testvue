@@ -1,10 +1,11 @@
 <template>
   <div>
     <div>
+      <h3>Login</h3>
       <form>
         <input v-model="email" type="text" placeholder="Email" />
         <input v-model="password" type="password" placeholder="Password" />
-        <input type="submit" value="Login" @click="Login" />
+        <input type="button" value="Login" @click="Login" />
       </form>
     </div>
   </div>
@@ -19,6 +20,7 @@ export default {
 
   methods: {
     Login() {
+      var vm = this
       var myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
@@ -36,7 +38,15 @@ export default {
 
       fetch("https://localhost:44382/api/token", requestOptions)
         .then((response) => response.json())
-        .then((result) => sessionStorage.setItem("Token", result.access_token))
+        .then((result) => {
+          console.log(result)
+          if (result.access_token != null) {
+            sessionStorage.setItem("Token", result.access_token);
+            vm.$router.push("/Users");
+          }
+          
+          
+        }) 
         .catch((error) => console.log("error", error));
     },
   },

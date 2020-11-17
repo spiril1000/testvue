@@ -1,38 +1,23 @@
 <template>
   <div id="app">
-    <div>
-      <h1>
-        HairForceOne
-      </h1>
-      <h2>
-        Login
-      </h2>
-      <div>
-      </div>
-      <input type="button" value="Token" @click="GetToken">
-      <login/>
-    </div>
+    <router-view> </router-view>
+   <router-link to="/Login">Login</router-link>
   </div>
 </template>
 
 <script>
-import Login from "./components/Login";
-import Users from './components/Users.vue';
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    Login,
-    Users
   },
   methods: {
-    GetToken(){
-      console.log(sessionStorage.getItem('Token'))
-    }
-  }
-}
-  
-    Login  
+    GetToken() {
+      console.log(sessionStorage.getItem("Token"));
+    },
+  },
+};
+
 </script>
 
 <style>
