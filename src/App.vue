@@ -1,19 +1,38 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div>
+      <h1>
+        HairForceOne
+      </h1>
+      <h2>
+        Login
+      </h2>
+      <div>
+      </div>
+      <input type="button" value="Token" @click="GetToken">
+      <login/>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Login from "./components/Login";
+import Users from './components/Users.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Login,
+    Users
+  },
+  methods: {
+    GetToken(){
+      console.log(sessionStorage.getItem('Token'))
+    }
   }
 }
+  
+    Login  
 </script>
 
 <style>
