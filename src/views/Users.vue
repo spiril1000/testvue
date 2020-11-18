@@ -2,8 +2,12 @@
 <div v-if="Users.length > 0">
 <div :key="key" v-for="(user,key) in Users">
     <h3>
-        {{user.FirstName}} {{user.LastName}} {{user.Gender}}
+        {{user.FirstName}} {{user.LastName}}
     </h3>
+    
+    <h4>
+        {{user.Email}} - {{user.PhoneNo}}
+    </h4>
 </div>
 </div>
 </template>
@@ -39,5 +43,9 @@ export default {
 
 
 <style>
-
+h4 {
+    display: block;
+    text-align: center;
+    margin-block: 10px;
+}
 </style>
