@@ -14,7 +14,6 @@
 
 
 <script>
-//  import * as http from "http";
 export default {
     name: "Users",
     data(){
@@ -31,11 +30,6 @@ export default {
   .then(response => response.json())
   .then(data => this.Users = data);
 
-//      http.getJSON("https://localhost:44382/api/users").then(result => {
-//   this.Users = result;
-// }, error => {
-//   console.log(error);
-// });
   }
 };
 
