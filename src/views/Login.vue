@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 export default {
   name: "Login",
   data: function () {
@@ -19,6 +20,7 @@ export default {
   },
 
   methods: {
+    ...mapMutations(["setUser", "setToken"]),
     Login() {
       var vm = this
       var myHeaders = new Headers();

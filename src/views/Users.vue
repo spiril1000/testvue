@@ -19,11 +19,11 @@ export default {
         }
     },
      mounted() {
-         fetch('https://localhost:44382/api/users'), {
+         fetch('https://localhost:44382/api/users', {
              headers: {
                  'Authorization': 'Bearer ' + sessionStorage.getItem("Token")
              }
-         }
+         })
   .then(response => response.json())
   .then(data => this.Users = data);
 
