@@ -2,7 +2,7 @@
 <div v-if="Users.length > 0">
 <div :key="key" v-for="(user,key) in Users">
     <h3>
-        {{user.FirstName}} {{user.LastName}}
+        {{user.FirstName}} {{user.LastName}} {{user.Gender}}
     </h3>
 </div>
 </div>
