@@ -7,6 +7,8 @@ export default new Vuex.Store({
         // Stores the toke and user object
         user: null,
         token: null,
+        // baseadress: "https://localhost:44382/api/",
+        baseadress: "https://selftesting.azurewebsites.net/api/" 
     },
     mutations: {
         setUser(state, user) {

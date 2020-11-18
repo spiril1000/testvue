@@ -19,7 +19,7 @@ export default {
         }
     },
      mounted() {
-         fetch('https://localhost:44382/api/users', {
+         fetch(this.$store.state.baseadress + "users", {
              headers: {
                  'Authorization': 'Bearer ' + sessionStorage.getItem("Token")
              }

@@ -38,7 +38,7 @@ export default {
         redirect: "follow",
       };
 
-      fetch("https://localhost:44382/api/token", requestOptions)
+      fetch(this.$store.state.baseadress + "token", requestOptions)
         .then((response) => response.json())
         .then((result) => {
           console.log(result)
