@@ -26,6 +26,8 @@
       </ul>
       <ul id="login">
         <li><router-link to="/Login">Login</router-link></li>
+        <li><router-link to="/Login">Login</router-link></li>
+
       </ul>
     </nav>
   </header>
