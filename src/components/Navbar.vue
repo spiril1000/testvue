@@ -19,8 +19,8 @@
       </a>
       <ul>
         <li><router-link to="/Users">Users</router-link></li>
-        <li><a href="/">Link</a></li>
-        <li><a href="/">Link</a></li>
+        <li><router-link to="/Register">Register</router-link></li>
+        <li><router-link to="/Booking">Booking</router-link></li>
         <li><a href="/">Link</a></li>
         <li><a href="/">Link</a></li>
       </ul>
