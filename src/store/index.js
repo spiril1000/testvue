@@ -1,7 +1,8 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from "vue";
+import Vuex from "vuex";
+import axios from "axios";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     // Stores the toke and user object
@@ -39,22 +40,3 @@ export default new Vuex.Store({
     },
   },
 });
-    state: {
-        // Stores the toke and user object
-        user: null,
-        token: null,
-        // baseadress: "https://localhost:44382/api/",
-        baseadress: "http://hairforceone.azurewebsites.net/api/"
-    },
-    mutations: {
-        setUser(state, user) {
-            state.user = user;
-        },
-        setToken(state, token) {
-            state.token = token;
-        },
-    },
-    actions: {},
-    getters: {},
-},
-);
