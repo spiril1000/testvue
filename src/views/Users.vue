@@ -1,51 +1,48 @@
 <template>
+  <div class="card" v-if="Users.length > 0">
+    <div :key="key" v-for="(user, key) in Users">
+      <h3>{{ user.FirstName }} {{ user.LastName }}</h3>
 
-<div class="card" v-if="Users.length > 0">
-<div :key="key" v-for="(user,key) in Users">
-    <h3>
-        {{user.FirstName}} {{user.LastName}}
-    </h3>
-    
-    <h4>
-        {{user.Email}} - {{user.PhoneNo}}
-    </h4>
-</div>
-</div>
+      <h4>{{ user.Email }} - {{ user.PhoneNo }}</h4>
+    </div>
+  </div>
 </template>
 
-
 <script>
+import { mapActions } from "vuex";
+import {} from "vuex";
 export default {
-    components: {
-    },
-    name: "Users",
-    data(){
-        return {
-            Users: []
-        }
-    },
-     mounted() {
-         fetch(this.$store.state.baseadress + "users", {
-             headers: {
-                 'Authorization': 'Bearer ' + sessionStorage.getItem("Token")
-             }
-         })
-  .then(response => response.json())
-  .then(data => this.Users = data);
-
-  }
+  methods: {
+    ...mapActions(["getUsers"]),
+  },
+  components: {},
+  name: "Users",
+  data() {
+    return {
+      Users: [],
+    };
+  },
+  mounted() {
+    this.getUsers();
+    this.Users = this.$store.getters.users;
+    // fetch(this.$store.state.baseadress + "users", {
+    //   headers: {
+    //     Authorization: "Bearer " + sessionStorage.getItem("Token"),
+    //   },
+    // })
+    //   .then((response) => response.json())
+    //   .then((data) => (this.Users = data));
+  },
 };
-
 </script>
-
 
 <style>
 h4 {
-    display: block;
-    text-align: center;
-    margin-block: 10px;
+  display: block;
+  text-align: center;
+  margin-block: 10px;
 }
-h3{
-    color: blue;
+h3 {
+  color: blue;
 }
 </style>
