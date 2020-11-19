@@ -3,7 +3,6 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 export default new Vuex.Store({
-<<<<<<< HEAD
   state: {
     // Stores the toke and user object
     user: null,
@@ -40,7 +39,6 @@ export default new Vuex.Store({
     },
   },
 });
-=======
     state: {
         // Stores the toke and user object
         user: null,
@@ -60,4 +58,3 @@ export default new Vuex.Store({
     getters: {},
 },
 );
->>>>>>> 5ba3c6bfe7f25fad9682a645fb02e1d7eba1d94f
