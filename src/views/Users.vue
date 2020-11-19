@@ -42,4 +42,7 @@ h4 {
     text-align: center;
     margin-block: 10px;
 }
+h3{
+    color: blue;
+}
 </style>
