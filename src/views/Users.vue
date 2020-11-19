@@ -1,5 +1,6 @@
 <template>
-<div v-if="Users.length > 0">
+
+<div class="card" v-if="Users.length > 0">
 <div :key="key" v-for="(user,key) in Users">
     <h3>
         {{user.FirstName}} {{user.LastName}}
@@ -15,6 +16,8 @@
 
 <script>
 export default {
+    components: {
+    },
     name: "Users",
     data(){
         return {
