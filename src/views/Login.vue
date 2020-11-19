@@ -2,9 +2,19 @@
   <div>
     <form @submit.prevent="Login">
       <label for="email">Email</label>
-      <input v-model="email" placeholder="name@mail.com " id="email" type="text" />
+      <input
+        v-model="email"
+        placeholder="name@mail.com "
+        id="email"
+        type="text"
+      />
       <label for="password">Password</label>
-      <input v-model="password" placeholder="Password" id="password" type="password" />
+      <input
+        v-model="password"
+        placeholder="Password"
+        id="password"
+        type="password"
+      />
       <label for="husk">Husk mig</label>
       <input type="checkbox" name="Husk mig" id="husk" />
       <button type="submit">Login</button>
@@ -13,44 +23,34 @@
 </template>
 
 <script>
+import axios from "axios";
 import { mapMutations } from "vuex";
 export default {
   name: "Login",
-  data: function () {
+  data: function() {
     return { email: "", password: "" };
   },
 
   methods: {
     ...mapMutations(["setUser", "setToken"]),
-    Login() {
-      var vm = this
-      var myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-
-      var urlencoded = new URLSearchParams();
-      urlencoded.append("username", this.email);
-      urlencoded.append("password", this.password);
-      urlencoded.append("grant_type", "password");
-
-      var requestOptions = {
-        method: "POST",
-        headers: myHeaders,
-        body: urlencoded,
-        redirect: "follow",
-      };
-
-      fetch(this.$store.state.baseadress + "token", requestOptions)
-        .then((response) => response.json())
-        .then((result) => {
-          console.log(result)
-          if (result.access_token != null) {
-            sessionStorage.setItem("Token", result.access_token);
-            vm.$router.push("/Users");
-          }
-          
-          
-        }) 
-        .catch((error) => console.log("error", error));
+    async Login() {
+      var vm = this;
+      try {
+        const params = new URLSearchParams();
+        params.append("username", this.email);
+        params.append("password", this.password);
+        params.append("grant_type", "password");
+        const response = await axios.post("/token", params, {
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        });
+        console.log(response);
+        if (response.data.access_token != null) {
+          sessionStorage.setItem("Token", response.data.access_token);
+          vm.$router.push("/Users");
+        }
+      } catch (error) {
+        console.error(error);
+      }
     },
   },
 };
