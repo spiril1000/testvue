@@ -8,6 +8,9 @@ import Booking from "../views/Booking";
 
 Vue.use(VueRouter);
 
+// https://router.vuejs.org/guide/
+
+
 const routes = [
   {
     path: "/Booking",

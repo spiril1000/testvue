@@ -1,25 +1,36 @@
 import Vue from "vue";
+
+// https://vuex.vuejs.org/
+
 import Vuex from "vuex";
+
+// https://www.npmjs.com/package/axios
+
 import axios from "axios";
 
 axios.defaults.baseURL = "https://hairforceone.azurewebsites.net/api/";
 
 // axios.defaults.baseURL = "https://localhost:44382/api/";
 // axios.defaults.headers.common["Authorization"] = "Bearer " + this.state.setTokenFromSession;
-
 axios.defaults.headers.post["Content-Type"] = "application/json";
 
 Vue.use(Vuex);
+
 export default new Vuex.Store({
+  // https://vuex.vuejs.org/guide/state.html
+
   state: {
-    // Stores the toke and user object
     user: null,
     users: null,
     token: null,
     services: null,
     products: null,
     employees: null,
+    baseadress: "http://hairforceone.azurewebsites.net/api/",
   },
+
+  // https://vuex.vuejs.org/guide/mutations.html
+
   mutations: {
     setUser(state, user) {
       state.user = user;
@@ -43,6 +54,9 @@ export default new Vuex.Store({
       state.token = sessionStorage.getItem("Token");
     },
   },
+
+  // https://vuex.vuejs.org/guide/actions.html
+
   actions: {
     async getUsers({ commit }) {
       commit("setTokenFromSession");
@@ -96,6 +110,9 @@ export default new Vuex.Store({
       }
     },
   },
+
+  // https://vuex.vuejs.org/guide/getters.html
+
   getters: {
     Users: (state) => state.users,
     Services: (state) => state.services,

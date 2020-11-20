@@ -18,6 +18,9 @@
         </svg>
       </a>
       <ul>
+    <!-- use router-link component for navigation. -->
+    <!-- specify the link by passing the `to` prop. -->
+    <!-- `<router-link>` will be rendered as an `<a>` tag by default -->
         <li><router-link to="/Users">Users</router-link></li>
         <li><router-link to="/Booking">Booking</router-link></li>
         <li><a href="/">Link</a></li>
