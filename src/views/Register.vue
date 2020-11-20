@@ -43,9 +43,10 @@
 
 <script>
 import { mapMutations } from "vuex";
+import axios from "axios";
 export default {
   name: "Register",
-  data: function () {
+  data: function() {
     return {
       email: "",
       password: "",
@@ -65,14 +66,9 @@ export default {
         PhoneNo: this.phoneNo,
         Password: this.password,
       });
-      fetch(this.$store.state.baseadress + "users ", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-          Authorization: "Bearer " + sessionStorage.getItem("Token"),
-        },
-        body: user,
-      }).catch((error) => console.log("error", error));
+      axios.post("/users", user, {
+        headers: { Authorization: "Bearer " + sessionStorage.getItem("Token") },
+      });
     },
   },
 };

@@ -7,7 +7,7 @@ axios.defaults.baseURL = "https://hairforceone.azurewebsites.net/api/";
 // axios.defaults.baseURL = "https://localhost:44382/api/";
 // axios.defaults.headers.common["Authorization"] = "Bearer " + this.state.setTokenFromSession;
 
-// axios.defaults.headers.post["Content-Type"] = "application/json";
+axios.defaults.headers.post["Content-Type"] = "application/json";
 
 Vue.use(Vuex);
 export default new Vuex.Store({
