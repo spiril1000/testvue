@@ -2,6 +2,7 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 import store from "./store";
+// Normalizes the css to ignore browser default css
 import "modern-normalize";
 import "./assets/css/global.css";
 

@@ -42,7 +42,9 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+// import Axios from 'axios';
+import { mapMutations, } from "vuex";
+
 export default {
   name: "Register",
   data: function () {
@@ -65,6 +67,18 @@ export default {
         PhoneNo: this.phoneNo,
         Password: this.password,
       });
+      // try {
+      // axios.post("/users", {
+      //     "content-type": "application/json",
+      //     headers: { Authorization: 'Bearer ' + sessionStorage.getItem("Token")},
+      //     data: user,
+      //   });
+      // }
+      // catch (error) {
+      //   console.log(error);
+      //   this.$router.push("/login");
+      // }
+
       fetch(this.$store.state.baseadress + "users ", {
         method: "POST",
         headers: {
