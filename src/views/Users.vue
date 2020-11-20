@@ -1,30 +1,37 @@
 <template>
-  <div class="card" v-if="Users.length > 0">
+<div>
+  <!-- <button @click="getUsers">tryk</button> -->
+  <div class="card" v-if="Users">
     <div :key="key" v-for="(user, key) in Users">
       <h3>{{ user.FirstName }} {{ user.LastName }}</h3>
 
       <h4>{{ user.Email }} - {{ user.PhoneNo }}</h4>
     </div>
   </div>
+</div>
 </template>
 
 <script>
-import { mapActions } from "vuex";
-import {} from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   methods: {
     ...mapActions(["getUsers"]),
   },
   components: {},
   name: "Users",
-  data() {
-    return {
-      Users: [],
-    };
+  // data() {
+  //   return {
+  //     Users: [],
+  //   };
+  // },
+  computed: {
+    ...mapGetters(["Users"])
   },
   mounted() {
     this.getUsers();
-    this.Users = this.$store.getters.users;
+
+    // this.Users = this.$store.getters.Users;
+    
     // fetch(this.$store.state.baseadress + "users", {
     //   headers: {
     //     Authorization: "Bearer " + sessionStorage.getItem("Token"),
