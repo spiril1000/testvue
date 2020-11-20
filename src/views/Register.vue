@@ -42,14 +42,9 @@
 </template>
 
 <script>
-<<<<<<< HEAD
 import { mapMutations } from "vuex";
 import axios from "axios";
-=======
-// import Axios from 'axios';
-import { mapMutations, } from "vuex";
 
->>>>>>> b3ee22d97b134c88a873dc994ca3f350b9b696c3
 export default {
   name: "Register",
   data: function() {
@@ -75,7 +70,6 @@ export default {
       axios.post("/users", user, {
         headers: { Authorization: "Bearer " + sessionStorage.getItem("Token") },
       });
-
     },
   },
 };
