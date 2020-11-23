@@ -18,9 +18,9 @@
         </svg>
       </a>
       <ul>
-    <!-- use router-link component for navigation. -->
-    <!-- specify the link by passing the `to` prop. -->
-    <!-- `<router-link>` will be rendered as an `<a>` tag by default -->
+        <!-- use router-link component for navigation. -->
+        <!-- specify the link by passing the `to` prop. -->
+        <!-- `<router-link>` will be rendered as an `<a>` tag by default -->
         <li><router-link to="/Users">Users</router-link></li>
         <li><router-link to="/Booking">Booking</router-link></li>
         <li><a href="/">Link</a></li>
@@ -30,7 +30,6 @@
       <ul id="login">
         <li><router-link to="/Login">Login</router-link></li>
         <li><router-link to="/Register">Register</router-link></li>
-
       </ul>
     </nav>
   </header>
@@ -43,7 +42,7 @@ export default {};
 // scoped!
 <style scoped>
 header {
-  background-color: #333;
+  background-color: #504e49;
   height: 50px;
   width: 100%;
   color: #ffffff;
@@ -60,7 +59,7 @@ header nav {
   padding: 0 20px;
   height: 30px;
   font-size: 2rem;
-  color: #fff;
+  color: #daa77a;
 }
 header > nav > ul {
   margin: 0;
@@ -74,7 +73,7 @@ header > nav > ul > li {
   line-height: 40px;
 }
 li > a {
-  color: #ddd;
+  color: #daa77a;
   padding: 0 20px;
   display: block;
   height: 100%;

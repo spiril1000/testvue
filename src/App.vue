@@ -28,10 +28,10 @@ a {
 }
 #App {
   /* Background */
-  background-image: url("./assets/HQ.jpg");
+  background-image: url("./assets/bg.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100;
+  height: 100vh;
 }
 </style>
