@@ -6,14 +6,8 @@ import Vuex from "vuex";
 
 // https://www.npmjs.com/package/axios
 
+// Import axios/index.js singleton instance 
 import axios from "../axios/index.js";
-
-// axios.defaults.baseURL = "https://hairforceone.azurewebsites.net/api/";
-
-// axios.defaults.baseURL = "https://localhost:44382/api/";
-// axios.defaults.headers.common["Authorization"] =
-// "Bearer " + sessionStorage.getItem("Token");
-// axios.defaults.headers.post["Content-Type"] = "application/json";
 
 Vue.use(Vuex);
 
@@ -71,9 +65,7 @@ export default new Vuex.Store({
     async getServices({ commit }) {
       commit("setTokenFromSession");
       try {
-        const response = await axios.get("/services", {
-          headers: { Authorization: `Bearer ${this.state.token}` },
-        });
+        const response = await axios.get("/services");
         commit("setServices", response.data);
       } catch (error) {
         console.log(error);
@@ -84,9 +76,7 @@ export default new Vuex.Store({
     async getProducts({ commit }) {
       commit("setTokenFromSession");
       try {
-        const response = await axios.get("/products", {
-          headers: { Authorization: `Bearer ${this.state.token}` },
-        });
+        const response = await axios.get("/products");
         commit("setProducts", response.data);
       } catch (error) {
         console.log(error);
@@ -97,9 +87,7 @@ export default new Vuex.Store({
     async getEmployees({ commit }) {
       commit("setTokenFromSession");
       try {
-        const response = await axios.get("/employees", {
-          headers: { Authorization: `Bearer ${this.state.token}` },
-        });
+        const response = await axios.get("/employees");
         commit("setEmployees", response.data);
       } catch (error) {
         console.log(error);

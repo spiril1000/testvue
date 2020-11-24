@@ -19,26 +19,12 @@ export default {
   },
   components: {},
   name: "Users",
-  // data() {
-  //   return {
-  //     Users: [],
-  //   };
-  // },
+
   computed: {
     ...mapGetters(["Users"]),
   },
   mounted() {
     this.getUsers();
-
-    // this.Users = this.$store.getters.Users;
-
-    // fetch(this.$store.state.baseadress + "users", {
-    //   headers: {
-    //     Authorization: "Bearer " + sessionStorage.getItem("Token"),
-    //   },
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => (this.Users = data));
   },
 };
 </script>

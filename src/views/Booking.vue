@@ -1,24 +1,20 @@
 <template>
-  <div>
-    <Services />
-    <h3>Producter</h3>
-    <Products />
-    <h3>Medarbejdere</h3>
-    <Employees />
+  <div class="card">
+    <h1>HairForceOne / Booking</h1>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-import Services from "../components/Services";
-import Products from "../components/Products";
-import Employees from "../components/Employees";
+// import Services from "../components/Services";
+// import Products from "../components/Products";
+// import Employees from "../components/Employees";
 export default {
-  components: {
-    Services,
-    Employees,
-    Products,
-  },
+  // components: {
+  //   Services,
+  //   Employees,
+  //   Products,
+  // },
   name: "Booking",
   mounted() {
     this.getProducts();
