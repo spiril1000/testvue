@@ -47,7 +47,7 @@ import axios from "../axios/index.js";
 
 export default {
   name: "Register",
-  data: function () {
+  data: function() {
     return {
       email: "",
       password: "",
@@ -59,7 +59,7 @@ export default {
 
   methods: {
     ...mapMutations(["setUser", "setToken"]),
-    Register() {
+    async Register() {
       var user = JSON.stringify({
         FirstName: this.firstName,
         LastName: this.lastName,
@@ -67,7 +67,7 @@ export default {
         PhoneNo: this.phoneNo,
         Password: this.password,
       });
-      axios.post("/users", user);
+      await axios.post("/users", user);
     },
   },
 };
