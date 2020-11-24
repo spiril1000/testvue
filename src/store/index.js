@@ -6,13 +6,14 @@ import Vuex from "vuex";
 
 // https://www.npmjs.com/package/axios
 
-import axios from "axios";
+import axios from "../axios/index.js";
 
-axios.defaults.baseURL = "https://hairforceone.azurewebsites.net/api/";
+// axios.defaults.baseURL = "https://hairforceone.azurewebsites.net/api/";
 
 // axios.defaults.baseURL = "https://localhost:44382/api/";
-// axios.defaults.headers.common["Authorization"] = "Bearer " + this.state.setTokenFromSession;
-axios.defaults.headers.post["Content-Type"] = "application/json";
+// axios.defaults.headers.common["Authorization"] =
+// "Bearer " + sessionStorage.getItem("Token");
+// axios.defaults.headers.post["Content-Type"] = "application/json";
 
 Vue.use(Vuex);
 
@@ -26,7 +27,6 @@ export default new Vuex.Store({
     services: null,
     products: null,
     employees: null,
-    baseadress: "http://hairforceone.azurewebsites.net/api/",
   },
 
   // https://vuex.vuejs.org/guide/mutations.html
@@ -59,11 +59,8 @@ export default new Vuex.Store({
 
   actions: {
     async getUsers({ commit }) {
-      commit("setTokenFromSession");
       try {
-        const response = await axios.get("/users", {
-          headers: { Authorization: `Bearer ${this.state.token}` },
-        });
+        const response = await axios.get("/users");
         commit("setUsers", response.data);
       } catch (error) {
         console.log(error);

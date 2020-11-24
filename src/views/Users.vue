@@ -1,14 +1,14 @@
 <template>
-<div>
-  <!-- <button @click="getUsers">tryk</button> -->
-  <div class="card" v-if="Users">
-    <div :key="key" v-for="(user, key) in Users">
-      <h3>{{ user.FirstName }} {{ user.LastName }}</h3>
+  <div>
+    <!-- <button @click="getUsers">tryk</button> -->
+    <div class="card" v-if="Users">
+      <div :key="key" v-for="(user, key) in Users">
+        <h3>{{ user.FirstName }} {{ user.LastName }}</h3>
 
-      <h4>{{ user.Email }} - {{ user.PhoneNo }}</h4>
+        <h4>{{ user.Email }} - {{ user.PhoneNo }}</h4>
+      </div>
     </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -25,13 +25,13 @@ export default {
   //   };
   // },
   computed: {
-    ...mapGetters(["Users"])
+    ...mapGetters(["Users"]),
   },
   mounted() {
     this.getUsers();
 
     // this.Users = this.$store.getters.Users;
-    
+
     // fetch(this.$store.state.baseadress + "users", {
     //   headers: {
     //     Authorization: "Bearer " + sessionStorage.getItem("Token"),

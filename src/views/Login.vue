@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from "../axios/index.js";
 import { mapMutations } from "vuex";
 export default {
   name: "Login",
@@ -46,7 +46,11 @@ export default {
         console.log(response);
         if (response.data.access_token != null) {
           sessionStorage.setItem("Token", response.data.access_token);
-          vm.$router.push("/Users");
+          axios.defaults.headers.common["Authorization"] =
+            "Bearer " + response.data.access_token;
+          // setTimeout(() => {
+          await vm.$router.push("/Users");
+          // }, 2000);
         }
       } catch (error) {
         console.error(error);

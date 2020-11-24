@@ -28,7 +28,7 @@ a {
 }
 #App {
   /* Background */
-  background-image: url("./assets/bg.jpg");
+  background-image: url("./assets/pictures/bg.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
