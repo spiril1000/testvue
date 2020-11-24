@@ -1,8 +1,11 @@
 <template>
   <div class="card" v-if="Services">
     <div :key="key" v-for="(service, key) in Services">
-      <h3 id="Title">{{ service.Title }}</h3>
-      <h4>{{ service.Duration }} minutter - {{ service.Price }}kr.</h4>
+      <div class="blok">
+        <p id="Title">{{ service.Title }}</p>
+        <p id="Duration">{{ service.Duration }} minutter</p>
+        <p id="Price">{{ service.Price }}kr.</p>
+      </div>
     </div>
   </div>
 </template>
@@ -23,8 +26,23 @@ export default {
 </script>
 
 <style>
-h3#Title {
-  text-align: center;
+#Title {
+  margin: 0px;
+  border: 1px solid;
+}
+#Duration {
+  margin: 10px;
+  border: 1px solid;
+  padding: 5px;
+}
+#Price {
+  margin: 10px;
+  border: 1px solid;
+  padding: 5px;
+}
+.blok {
+  margin-block-end: 20px;
   color: black;
+  display: flex;
 }
 </style>
