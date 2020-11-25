@@ -6,7 +6,7 @@ import Vuex from "vuex";
 
 // https://www.npmjs.com/package/axios
 
-// Import axios/index.js singleton instance 
+// Import axios/index.js singleton instance
 import axios from "../axios/index.js";
 
 Vue.use(Vuex);
@@ -18,7 +18,7 @@ export default new Vuex.Store({
     user: null,
     users: null,
     token: null,
-    services: null,
+    services: [],
     products: null,
     employees: null,
   },
@@ -61,16 +61,34 @@ export default new Vuex.Store({
         this.$router.push("/login");
       }
     },
-
+    // OBS
     async getServices({ commit }) {
       commit("setTokenFromSession");
       try {
         const response = await axios.get("/services");
+        // .then((response) => {
+        response.data.forEach((element) => {
+          element.visible = false;
+          element.checked = false;
+        });
         commit("setServices", response.data);
       } catch (error) {
         console.log(error);
         this.$router.push("/login");
       }
+      // forstå hvorfor :)
+      // async getServices({ commit }) {
+      //   commit("setTokenFromSession");
+      //   try {
+      //   axios.get("/services")
+      //   .then((response) => {
+      //     response.data.forEach((element) => (element.visible = false));
+      //     commit("setServices", response.data);
+      //   });
+      //   } catch (error) {
+      //     console.log(error);
+      //     this.$router.push("/login");
+      //   }
     },
 
     async getProducts({ commit }) {
@@ -97,11 +115,16 @@ export default new Vuex.Store({
   },
 
   // https://vuex.vuejs.org/guide/getters.html
-
+  // () ?? return??
   getters: {
     Users: (state) => state.users,
     Services: (state) => state.services,
     Products: (state) => state.products,
     Employees: (state) => state.employees,
+    CheckedServices: (state) => {
+      // if (state.services.length > 0)
+      return state.services.filter((service) => service.checked);
+      // else return [];
+    },
   },
 });

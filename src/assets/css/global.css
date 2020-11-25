@@ -1,6 +1,8 @@
 .card {
   background-color: rgba(255, 255, 255, 0.459);
-  height: 100;
+  /* We like! */
+  backdrop-filter: blur(10px);
+
   width: 75vw;
   margin: 20px auto;
   border-radius: 50px;
