@@ -77,6 +77,7 @@ export default new Vuex.Store({
         this.$router.push("/login");
       }
       // forstå hvorfor :)
+
       // async getServices({ commit }) {
       //   commit("setTokenFromSession");
       //   try {
