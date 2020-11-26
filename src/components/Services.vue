@@ -72,9 +72,7 @@
           </tbody>
         </table>
       </div>
-      <div class="checkout">
-        <Checked />
-      </div>
+      <Checked />
     </div>
   </div>
 </template>
@@ -113,15 +111,7 @@ export default {
   border-right: 1px dashed;
   margin-right: 50px;
 }
-.checkout {
-  background-color: rgba(255, 255, 255, 0.459);
-  width: 20%;
-  height: 100%;
-  margin: 5px auto;
-  border-radius: 50px;
-  box-shadow: 0px 0px 20px 0px rgb(0, 0, 0.2);
-  padding: 100px;
-}
+
 th.chevron {
   width: 25px;
 }

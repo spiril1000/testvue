@@ -1,10 +1,12 @@
 <template>
-  <div>
-    <div v-for="(service, key) in CheckedServices" :key="key">
-      {{ service.Title }}
+  <div class="checkout">
+    <div v-if="CheckedServices.length > 0">
+      <div v-for="(service, key) in CheckedServices" :key="key">
+        {{ service.Title }}
+      </div>
+      <div>{{ CheckedServices ? price : "0.00" }} kr</div>
+      <div>{{ CheckedServices ? duration : "0.00" }}</div>
     </div>
-    <div>{{ CheckedServices ? price : "0.00" }} kr</div>
-    <div>{{ CheckedServices ? duration : "0.00" }}</div>
   </div>
 </template>
 
@@ -21,12 +23,21 @@ export default {
     },
     duration() {
       return this.CheckedServices.map((element) => {
-        return element.Duration;
+        return parseInt(element.Duration);
       }).reduce((a, b) => a + b);
     },
   },
 };
 </script>
 
-<style>
+<style scoped>
+.checkout {
+  background-color: rgba(255, 255, 255, 0.459);
+  width: 20%;
+  height: 100%;
+  margin: 5px auto;
+  border-radius: 50px;
+  box-shadow: 0px 0px 20px 0px rgb(0, 0, 0.2);
+  padding: 100px;
+}
 </style>
