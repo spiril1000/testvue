@@ -1,11 +1,15 @@
 <template>
   <div class="checkout">
     <div v-if="CheckedServices.length > 0">
-      <div v-for="(service, key) in CheckedServices" :key="key">
+      <div
+        v-for="(service, product, key) in (CheckedServices, CheckedProducts)"
+        :key="key"
+      >
         {{ service.Title }}
       </div>
       <div>{{ CheckedServices ? price : "0.00" }} kr</div>
       <div>{{ CheckedServices ? duration : "0.00" }}</div>
+      <div>{{ CheckedProducts ? retailprice : "0.00" }}</div>
     </div>
   </div>
 </template>
@@ -15,7 +19,7 @@ import { mapGetters } from "vuex";
 
 export default {
   computed: {
-    ...mapGetters(["CheckedServices"]),
+    ...mapGetters(["CheckedServices"], ["CheckedProducts"]),
     price() {
       return this.CheckedServices.map((element) => {
         return element.Price;
@@ -24,6 +28,11 @@ export default {
     duration() {
       return this.CheckedServices.map((element) => {
         return parseInt(element.Duration);
+      }).reduce((a, b) => a + b);
+    },
+    retailprice() {
+      return this.CheckedProducts.map((element) => {
+        return element.RetailPrice;
       }).reduce((a, b) => a + b);
     },
   },

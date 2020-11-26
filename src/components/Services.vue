@@ -135,23 +135,4 @@ table {
 thead {
   margin: auto;
 }
-#Title {
-  margin: 10px;
-  padding: 5px;
-}
-#Duration {
-  margin: 10px;
-  padding: 5px;
-}
-#Price {
-  margin: 10px;
-  padding: 5px;
-}
-.blok {
-  margin: 20px;
-  padding: 20px;
-  color: black;
-  display: flex;
-  border: 1px solid;
-}
 </style>

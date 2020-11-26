@@ -19,7 +19,7 @@ export default new Vuex.Store({
     users: null,
     token: null,
     services: [],
-    products: null,
+    products: [],
     employees: null,
   },
 
@@ -96,6 +96,10 @@ export default new Vuex.Store({
       commit("setTokenFromSession");
       try {
         const response = await axios.get("/products");
+        response.data.forEach((element) => {
+          element.visible = false;
+          element.checked = false;
+        });
         commit("setProducts", response.data);
       } catch (error) {
         console.log(error);
@@ -125,6 +129,11 @@ export default new Vuex.Store({
     CheckedServices: (state) => {
       // if (state.services.length > 0)
       return state.services.filter((service) => service.checked);
+      // else return [];
+    },
+    CheckedProducts: (state) => {
+      // if (state.services.length > 0)
+      return state.products.filter((product) => product.checked);
       // else return [];
     },
   },
