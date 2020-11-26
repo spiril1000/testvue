@@ -1,15 +1,17 @@
 <template>
   <div class="checkout">
     <div v-if="CheckedServices.length > 0">
-      <div
-        v-for="(service, product, key) in (CheckedServices, CheckedProducts)"
-        :key="key"
-      >
+      <div v-for="(service, key) in CheckedServices" :key="key">
         {{ service.Title }}
       </div>
-      <div>{{ CheckedServices ? price : "0.00" }} kr</div>
-      <div>{{ CheckedServices ? duration : "0.00" }}</div>
-      <div>{{ CheckedProducts ? retailprice : "0.00" }}</div>
+      <div>{{ CheckedServices ? CheckedServicePrice : "0.00" }} kr</div>
+      <div>{{ CheckedServices ? CheckedServiceDuration : "0.00" }}</div>
+    </div>
+    <div v-if="CheckedProducts.length > 0">
+      <div v-for="(product, key) in CheckedProducts" :key="key">
+        {{ product.Title }}
+      </div>
+      <div>{{ CheckedProducts ? CheckedProductPrice : "0.00" }}</div>
     </div>
   </div>
 </template>
@@ -19,22 +21,28 @@ import { mapGetters } from "vuex";
 
 export default {
   computed: {
-    ...mapGetters(["CheckedServices"], ["CheckedProducts"]),
-    price() {
-      return this.CheckedServices.map((element) => {
-        return element.Price;
-      }).reduce((a, b) => a + b);
-    },
-    duration() {
-      return this.CheckedServices.map((element) => {
-        return parseInt(element.Duration);
-      }).reduce((a, b) => a + b);
-    },
-    retailprice() {
-      return this.CheckedProducts.map((element) => {
-        return element.RetailPrice;
-      }).reduce((a, b) => a + b);
-    },
+    ...mapGetters([
+      "CheckedServices",
+      "CheckedProducts",
+      "CheckedServicePrice",
+      "CheckedServiceDuration",
+      "CheckedProductPrice",
+    ]),
+    // price() {
+    //   return this.CheckedServices.map((element) => {
+    //     return element.Price;
+    //   }).reduce((a, b) => a + b);
+    // },
+    // duration() {
+    //   return this.CheckedServices.map((element) => {
+    //     return parseInt(element.Duration);
+    //   }).reduce((a, b) => a + b);
+    // },
+    // retailprice() {
+    //   return this.CheckedProducts.map((element) => {
+    //     return parseFloat(element.RetailPrice);
+    //   }).reduce((a, b) => a + b);
+    // },
   },
 };
 </script>

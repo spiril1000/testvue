@@ -74,6 +74,7 @@
       </div>
       <Checked />
     </div>
+    <router-link to="/Booking/Products">Next, i think</router-link>
   </div>
 </template>
 
@@ -85,7 +86,9 @@ export default {
     Checked,
   },
   mounted() {
+    // if (this.$store.services.length < 0) {
     this.getServices();
+    // }
   },
   methods: {
     ...mapActions(["getServices"]),

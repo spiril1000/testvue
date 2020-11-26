@@ -20,7 +20,7 @@ export default new Vuex.Store({
     token: null,
     services: [],
     products: [],
-    employees: null,
+    employees: [],
   },
 
   // https://vuex.vuejs.org/guide/mutations.html
@@ -64,6 +64,7 @@ export default new Vuex.Store({
     // OBS
     async getServices({ commit }) {
       commit("setTokenFromSession");
+      // if (state.services.length > 0) {
       try {
         const response = await axios.get("/services");
         // .then((response) => {
@@ -76,20 +77,7 @@ export default new Vuex.Store({
         console.log(error);
         this.$router.push("/login");
       }
-      // forstå hvorfor :)
-
-      // async getServices({ commit }) {
-      //   commit("setTokenFromSession");
-      //   try {
-      //   axios.get("/services")
-      //   .then((response) => {
-      //     response.data.forEach((element) => (element.visible = false));
-      //     commit("setServices", response.data);
-      //   });
-      //   } catch (error) {
-      //     console.log(error);
-      //     this.$router.push("/login");
-      //   }
+      // }
     },
 
     async getProducts({ commit }) {
@@ -111,6 +99,9 @@ export default new Vuex.Store({
       commit("setTokenFromSession");
       try {
         const response = await axios.get("/employees");
+        response.data.forEach((element) => {
+          element.checked = false;
+        });
         commit("setEmployees", response.data);
       } catch (error) {
         console.log(error);
@@ -126,15 +117,23 @@ export default new Vuex.Store({
     Services: (state) => state.services,
     Products: (state) => state.products,
     Employees: (state) => state.employees,
-    CheckedServices: (state) => {
-      // if (state.services.length > 0)
-      return state.services.filter((service) => service.checked);
-      // else return [];
-    },
-    CheckedProducts: (state) => {
-      // if (state.services.length > 0)
-      return state.products.filter((product) => product.checked);
-      // else return [];
-    },
+    CheckedServices: (state) =>
+      state.services.filter((service) => service.checked),
+    CheckedProducts: (state) =>
+      state.products.filter((product) => product.checked),
+    CheckedEmployees: (state) =>
+      state.employees.find((employee) => employee.checked),
+    CheckedServicePrice: (state, getters) =>
+      getters.CheckedServices.map((element) => element.Price).reduce(
+        (a, b) => a + b
+      ),
+    CheckedServiceDuration: (state, getters) =>
+      getters.CheckedServices.map((element) => element.Duration).reduce(
+        (a, b) => a + b
+      ),
+    CheckedProductPrice: (state, getters) =>
+      getters.CheckedProducts.map((element) => element.RetailPrice).reduce(
+        (a, b) => a + b
+      ),
   },
 });

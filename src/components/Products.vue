@@ -66,7 +66,7 @@
               <td>
                 <input
                   type="checkbox"
-                  name="selected1"
+                  name="selected"
                   id=""
                   v-model="product.checked"
                 />
@@ -79,6 +79,7 @@
         <Checked />
       </div>
     </div>
+    <router-link to="/Booking/Services">Back, i think</router-link>
   </div>
 </template>
 
@@ -87,7 +88,7 @@ import { mapActions, mapGetters } from "vuex";
 import Checked from "../components/Checked.vue";
 
 export default {
-  Checked,
+  components: { Checked },
   mounted() {
     this.getProducts();
   },
