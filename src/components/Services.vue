@@ -113,7 +113,7 @@ export default {
   border-right: 1px dashed;
   margin-right: 50px;
 }
-.checkout {
+/* .checkout {
   background-color: rgba(255, 255, 255, 0.459);
   width: 20%;
   height: 100%;
@@ -121,7 +121,7 @@ export default {
   border-radius: 50px;
   box-shadow: 0px 0px 20px 0px rgb(0, 0, 0.2);
   padding: 100px;
-}
+} */
 th.chevron {
   width: 25px;
 }
@@ -144,24 +144,5 @@ table {
 }
 thead {
   margin: auto;
-}
-#Title {
-  margin: 10px;
-  padding: 5px;
-}
-#Duration {
-  margin: 10px;
-  padding: 5px;
-}
-#Price {
-  margin: 10px;
-  padding: 5px;
-}
-.blok {
-  margin: 20px;
-  padding: 20px;
-  color: black;
-  display: flex;
-  border: 1px solid;
 }
 </style>
