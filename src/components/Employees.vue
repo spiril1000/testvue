@@ -3,8 +3,8 @@
     <div class="flex-container">
       <div :key="key" v-for="(employee, key) in Employees">
         <div>
-          <h3>{{ employee.FirstName }}</h3>
-          <h3>{{ employee.Biography }}</h3>
+          <div>{{ employee.FirstName }}</div>
+          <div>{{ employee.Biography }}</div>
         </div>
         <input
           type="checkbox"

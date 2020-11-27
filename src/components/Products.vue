@@ -80,6 +80,7 @@
       </div>
     </div>
     <router-link to="/Booking/Employees">Next, i think</router-link>
+    <br />
     <router-link to="/Booking/Services">Back, i think</router-link>
   </div>
 </template>
