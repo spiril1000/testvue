@@ -6,9 +6,17 @@
           <h3>{{ employee.FirstName }}</h3>
           <h3>{{ employee.Biography }}</h3>
         </div>
+        <input
+          type="checkbox"
+          name="selected"
+          id=""
+          v-model="employee.checked"
+        />
       </div>
       <Checked />
     </div>
+    <!-- <router-link to="/Booking/Products">Next, i think</router-link> -->
+    <router-link to="/Booking/Products">Back, i think</router-link>
   </div>
 </template>
 
@@ -33,15 +41,14 @@ export default {
 .flex-container {
   display: flex;
   flex-wrap: wrap;
-  background-color: DodgerBlue;
 }
 
 .flex-container > div {
-  background-color: #f1f1f1;
-  width: 40%;
-  margin: 10px;
+  width: 30%;
+  height: 30%;
+  padding: 10px;
   text-align: center;
   line-height: 75px;
-  font-size: 30px;
+  /* font-size: 30px; */
 }
 </style>

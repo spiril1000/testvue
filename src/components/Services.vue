@@ -91,7 +91,7 @@ export default {
     // }
   },
   methods: {
-    ...mapActions(["getServices"]),
+    ...mapActions(["getServices", "GetCheckedServices"]),
   },
   computed: {
     ...mapGetters(["Services"]),

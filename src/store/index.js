@@ -122,7 +122,7 @@ export default new Vuex.Store({
     CheckedProducts: (state) =>
       state.products.filter((product) => product.checked),
     CheckedEmployees: (state) =>
-      state.employees.find((employee) => employee.checked),
+      state.employees.filter((employee) => employee.checked),
     CheckedServicePrice: (state, getters) =>
       getters.CheckedServices.map((element) => element.Price).reduce(
         (a, b) => a + b
