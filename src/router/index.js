@@ -8,12 +8,18 @@ import Booking from "../views/Booking";
 import Services from "../components/Services";
 import Products from "../components/Products";
 import Employees from "../components/Employees";
+import Events from "../components/Events";
 
 Vue.use(VueRouter);
 
 // https://router.vuejs.org/guide/
 
 const routes = [
+  {
+    path: "/Booking/Events",
+    name: "Events",
+    component: Events,
+  },
   {
     path: "/Booking/Employees",
     name: "Employees",

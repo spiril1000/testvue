@@ -15,7 +15,7 @@
       </div>
       <Checked />
     </div>
-    <!-- <router-link to="/Booking/Products">Next, i think</router-link> -->
+    <router-link to="/Booking/Events">Next, i think</router-link>
     <router-link to="/Booking/Products">Back, i think</router-link>
   </div>
 </template>

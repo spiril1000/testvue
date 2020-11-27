@@ -63,49 +63,50 @@ export default new Vuex.Store({
     },
     // OBS
     async getServices({ commit }) {
-      commit("setTokenFromSession");
-      // if (state.services.length > 0) {
-      try {
-        const response = await axios.get("/services");
-        // .then((response) => {
-        response.data.forEach((element) => {
-          element.visible = false;
-          element.checked = false;
-        });
-        commit("setServices", response.data);
-      } catch (error) {
-        console.log(error);
-        this.$router.push("/login");
+      if (this.state.services.length < 1) {
+        try {
+          const response = await axios.get("/services");
+          // .then((response) => {
+          response.data.forEach((element) => {
+            element.visible = false;
+            element.checked = false;
+          });
+          commit("setServices", response.data);
+        } catch (error) {
+          console.log(error);
+          this.$router.push("/login");
+        }
       }
-      // }
     },
 
     async getProducts({ commit }) {
-      commit("setTokenFromSession");
-      try {
-        const response = await axios.get("/products");
-        response.data.forEach((element) => {
-          element.visible = false;
-          element.checked = false;
-        });
-        commit("setProducts", response.data);
-      } catch (error) {
-        console.log(error);
-        this.$router.push("/login");
+      if (this.state.products.length < 1) {
+        try {
+          const response = await axios.get("/products");
+          response.data.forEach((element) => {
+            element.visible = false;
+            element.checked = false;
+          });
+          commit("setProducts", response.data);
+        } catch (error) {
+          console.log(error);
+          this.$router.push("/login");
+        }
       }
     },
 
     async getEmployees({ commit }) {
-      commit("setTokenFromSession");
-      try {
-        const response = await axios.get("/employees");
-        response.data.forEach((element) => {
-          element.checked = false;
-        });
-        commit("setEmployees", response.data);
-      } catch (error) {
-        console.log(error);
-        this.$router.push("/login");
+      if (this.state.employees < 1) {
+        try {
+          const response = await axios.get("/employees");
+          response.data.forEach((element) => {
+            element.checked = false;
+          });
+          commit("setEmployees", response.data);
+        } catch (error) {
+          console.log(error);
+          this.$router.push("/login");
+        }
       }
     },
   },
@@ -122,15 +123,15 @@ export default new Vuex.Store({
     CheckedProducts: (state) =>
       state.products.filter((product) => product.checked),
     CheckedEmployees: (state) =>
-      state.employees.filter((employee) => employee.checked),
+      state.employees.find((employee) => employee.checked),
     CheckedServicePrice: (state, getters) =>
       getters.CheckedServices.map((element) => element.Price).reduce(
         (a, b) => a + b
       ),
     CheckedServiceDuration: (state, getters) =>
-      getters.CheckedServices.map((element) => element.Duration).reduce(
-        (a, b) => a + b
-      ),
+      getters.CheckedServices.map((element) =>
+        parseInt(element.Duration)
+      ).reduce((a, b) => a + b),
     CheckedProductPrice: (state, getters) =>
       getters.CheckedProducts.map((element) => element.RetailPrice).reduce(
         (a, b) => a + b

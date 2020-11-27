@@ -13,10 +13,8 @@
       </div>
       <div>{{ CheckedProducts ? CheckedProductPrice : "0.00" }}</div>
     </div>
-    <div v-if="CheckedEmployees.length > 0">
-      <div v-for="(employee, key) in CheckedEmployees" :key="key">
-        {{ employee.FirstName }}
-      </div>
+    <div v-if="CheckedEmployees != null">
+      {{ CheckedEmployees.FirstName }}
       <!-- <div>{{ CheckedEmployees ? CheckedProductPrice : "0.00" }}</div> -->
     </div>
   </div>
