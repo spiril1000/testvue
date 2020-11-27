@@ -78,9 +78,9 @@ export default new Vuex.Store({
         }
       }
     },
-
-    async getProducts({ commit }) {
-      if (this.state.products.length < 1) {
+    // This is the right way to do things
+    async getProducts({ commit, state }) {
+      if (state.products.length < 1) {
         try {
           const response = await axios.get("/products");
           response.data.forEach((element) => {
