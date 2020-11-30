@@ -21,6 +21,7 @@ export default new Vuex.Store({
     services: [],
     products: [],
     employees: [],
+    availabletimes: [],
   },
 
   // https://vuex.vuejs.org/guide/mutations.html
@@ -37,6 +38,9 @@ export default new Vuex.Store({
     },
     setProducts(state, products) {
       state.products = products;
+    },
+    setAvailableTimes(state, availabletimes) {
+      state.availabletimes = availabletimes;
     },
     setEmployees(state, employees) {
       state.employees = employees;
@@ -78,6 +82,21 @@ export default new Vuex.Store({
         }
       }
     },
+    async getAvailableTimes({ commit, getters }, selecteddate) {
+      var data = {
+        employeeId: this.state.employees,
+        selecteddate: selecteddate,
+        duration: getters.CheckedServiceDuration,
+      };
+      try {
+        const response = await axios.post("/Events", data);
+        // .then((response) => {
+        commit("setAvailableTimes", response.data);
+      } catch (error) {
+        console.log(error);
+        this.$router.push("/login");
+      }
+    },
     // This is the right way to do things
     async getProducts({ commit, state }) {
       if (state.products.length < 1) {
@@ -116,6 +135,7 @@ export default new Vuex.Store({
   getters: {
     Users: (state) => state.users,
     Services: (state) => state.services,
+    AvailableTimes: (state) => state.availabletimes,
     Products: (state) => state.products,
     Employees: (state) => state.employees,
     CheckedServices: (state) =>
