@@ -3,8 +3,8 @@ import axios from "axios";
 // https://github.com/axios/axios#creating-an-instance
 
 const instance = axios.create({
-  baseURL: "https://localhost:44382/api/",
-  // baseURL: "https://hairforceone.azurewebsites.net/api/",
+  // baseURL: "https://localhost:44382/api/",
+  baseURL: "https://hairforceone.azurewebsites.net/api/",
   headers: { "Content-type": "application/json" },
 });
 
