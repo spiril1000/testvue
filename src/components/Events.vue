@@ -22,11 +22,13 @@ export default {
   methods: {
     booktime: function() {
       var booking = {
+        starttime: "12-01-2020 13:30:00",
         services: this.CheckedServices,
         products: this.CheckedProducts,
         employee: this.CheckedEmployees,
         duration: this.CheckedServiceDuration,
-        price: this.CheckedProductPrice + this.CheckedServicePrice,
+        totalprice: this.CheckedProductPrice + this.CheckedServicePrice,
+        comment: "Dette er en test kommentar",
       };
       axios.post("/bookings", booking);
     },
