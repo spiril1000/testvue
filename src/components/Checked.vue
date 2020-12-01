@@ -17,6 +17,10 @@
       {{ CheckedEmployees.FirstName }}
       <!-- <div>{{ CheckedEmployees ? CheckedProductPrice : "0.00" }}</div> -->
     </div>
+    <div v-if="CheckedEvents != null">
+      {{ CheckedEvents.StartTime }}
+      <!-- <div>{{ CheckedEmployees ? CheckedProductPrice : "0.00" }}</div> -->
+    </div>
   </div>
 </template>
 
@@ -32,6 +36,7 @@ export default {
       "CheckedServicePrice",
       "CheckedServiceDuration",
       "CheckedProductPrice",
+      "CheckedEvents",
     ]),
     // price() {
     //   return this.CheckedServices.map((element) => {

@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import Checked from "../components/Checked.vue";
 export default {
   components: { Checked },

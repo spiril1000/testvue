@@ -22,6 +22,7 @@ export default new Vuex.Store({
     products: [],
     employees: [],
     availabletimes: [],
+    events: [],
   },
 
   // https://vuex.vuejs.org/guide/mutations.html
@@ -38,6 +39,9 @@ export default new Vuex.Store({
     },
     setProducts(state, products) {
       state.products = products;
+    },
+    setEvents(state, events) {
+      state.events = events;
     },
     setAvailableTimes(state, availabletimes) {
       state.availabletimes = availabletimes;
@@ -128,6 +132,20 @@ export default new Vuex.Store({
         }
       }
     },
+    async getEvents({ commit, state }) {
+      if (state.events.length < 1) {
+        try {
+          const response = await axios.get("/events");
+          commit("setEvents", response.data);
+          response.data.forEach((element) => {
+            element.checked = false;
+          });
+        } catch (error) {
+          console.log(error);
+          this.$router.push("/login");
+        }
+      }
+    },
   },
 
   // https://vuex.vuejs.org/guide/getters.html
@@ -138,8 +156,10 @@ export default new Vuex.Store({
     AvailableTimes: (state) => state.availabletimes,
     Products: (state) => state.products,
     Employees: (state) => state.employees,
+    Events: (state) => state.events,
     CheckedServices: (state) =>
       state.services.filter((service) => service.checked),
+    CheckedEvents: (state) => state.events.filter((events) => events.checked),
     CheckedProducts: (state) =>
       state.products.filter((product) => product.checked),
     CheckedEmployees: (state) =>
