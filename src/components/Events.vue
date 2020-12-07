@@ -18,6 +18,8 @@
       </div>
     </div>
     <checked />
+    <router-link to="/Booking/Checkout">Next, i think</router-link>
+    <router-link to="/Booking/Employees">Back, i think</router-link>
   </div>
 </template>
 
@@ -32,13 +34,13 @@ export default {
   },
   methods: {
     ...mapActions(["getAvailableTimes"]),
-    test123: function() {
+    test123: function () {
       this.getAvailableTimes(document.getElementById("date").value);
       document.getElementById("knap").value = document.getElementById(
         "date"
       ).value;
     },
-    booktime: function() {
+    booktime: function () {
       var booking = {
         starttime: "12-01-2020 13:30:00",
         services: this.CheckedServices,
@@ -73,7 +75,11 @@ export default {
         return this.$store.state.checkedTime;
       },
       set(value) {
-        this.$store.commit("setCheckedTime", value);
+        var newdate = new Date(document.getElementById("date").value);
+        var newnewdate = new Date(newdate.toISOString().split("T")[0]);
+        var targetdate = new Date(newnewdate + value);
+
+        this.$store.commit("setCheckedTime", targetdate);
       },
     },
   },

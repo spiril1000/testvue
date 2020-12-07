@@ -9,12 +9,18 @@ import Services from "../components/Services";
 import Products from "../components/Products";
 import Employees from "../components/Employees";
 import Events from "../components/Events";
+import Checkout from "../components/Checkout";
 
 Vue.use(VueRouter);
 
 // https://router.vuejs.org/guide/
 
 const routes = [
+  {
+    path: "/Booking/Checkout",
+    name: "Checkout",
+    component: Checkout,
+  },
   {
     path: "/Booking/Events",
     name: "Events",

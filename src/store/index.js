@@ -32,6 +32,7 @@ export default new Vuex.Store({
     availabletimes: [],
     events: [],
     checkedTime: null,
+    selecteddate: "",
   },
 
   // https://vuex.vuejs.org/guide/mutations.html
@@ -66,6 +67,9 @@ export default new Vuex.Store({
     },
     setTokenFromSession(state) {
       state.token = sessionStorage.getItem("Token");
+    },
+    SetSelectedDate(state, selecteddate) {
+      state.SetSelectedDate = selecteddate;
     },
   },
 
@@ -108,6 +112,7 @@ export default new Vuex.Store({
         const response = await axios.post("/Events", data);
         // .then((response) => {
         commit("setAvailableTimes", response.data);
+        commit("SetSelectedDate", selecteddate);
       } catch (error) {
         console.log(error);
         this.$router.push("/login");

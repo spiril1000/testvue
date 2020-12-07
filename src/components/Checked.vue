@@ -22,7 +22,10 @@
 
       <!-- <div>{{ CheckedEmployees ? CheckedProductPrice : "0.00" }}</div> -->
     </div>
-    <div>{{ this.$store.state.checkedTime }}</div>
+    <div>
+      {{ this.$store.state.checkedTime }}
+      {{ this.$store.state.selecteddate }}
+    </div>
   </div>
 </template>
 
