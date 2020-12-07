@@ -1,36 +1,36 @@
 <template>
-  <div class="card" v-if="Events">
-    <div :key="key" v-for="(event, key) in events">
-      <div>
-        <div>{{ event.From }}</div>
-        <div>{{ event.To }}</div>
-        <div>{{ event.Available }}</div>
-        <div>{{ event.StartTime }}</div>
-        <div>{{ event.BookedDate }}</div>
-      </div>
-      <input type="checkbox" name="selected" id="" v-model="employee.checked" />
-    </div>
+  <div class="card">
     <input type="date" id="date" @blur="test123" />
     <div class="test">
       <div
-        class="time"
         v-for="(availabletime, key) in AvailableTimes"
         :key="key"
+        class="time"
       >
-        <a href="">
-          {{ availabletime }}
-        </a>
+        <input
+          type="radio"
+          name="radiotimes"
+          :id="'time-' + key"
+          :value="availabletime"
+          v-model="checkedTime"
+        />
+        <label :for="'time-' + key">{{ availabletime }}</label>
       </div>
     </div>
+    <checked />
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
 import axios from "../axios/index.js";
+import dayjs from "dayjs";
+import checked from "./Checked";
 export default {
+  components: {
+    checked,
+  },
   methods: {
-    ...mapActions(["GetEvents"]),
     ...mapActions(["getAvailableTimes"]),
     test123: function() {
       this.getAvailableTimes(document.getElementById("date").value);
@@ -52,8 +52,11 @@ export default {
     },
   },
   mounted() {
+    var time = new dayjs();
+
+    this.getAvailableTimes(time);
     document.getElementById("date").min = new Date().toISOString();
-    this.getEvent();
+    // this.getEvent();
   },
   computed: {
     ...mapGetters([
@@ -64,8 +67,15 @@ export default {
       "CheckedServicePrice",
       "CheckedServiceDuration",
       "CheckedProductPrice",
-      "Events",
     ]),
+    checkedTime: {
+      get() {
+        return this.$store.state.checkedTime;
+      },
+      set(value) {
+        this.$store.commit("setCheckedTime", value);
+      },
+    },
   },
 };
 </script>
@@ -80,5 +90,11 @@ div.time {
   background-color: rgba(255, 255, 255, 0.336);
   display: inline-flex;
   box-shadow: -1px 0px 4px 0px rgba(0, 0, 0, 0.27);
+}
+input[type="radio"] {
+  display: none;
+}
+input[type="radio"]:checked + label {
+  background-color: red;
 }
 </style>

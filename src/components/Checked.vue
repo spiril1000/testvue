@@ -19,8 +19,10 @@
     </div>
     <div v-if="CheckedEvents != null">
       {{ CheckedEvents.StartTime }}
+
       <!-- <div>{{ CheckedEmployees ? CheckedProductPrice : "0.00" }}</div> -->
     </div>
+    <div>{{ this.$store.state.checkedTime }}</div>
   </div>
 </template>
 

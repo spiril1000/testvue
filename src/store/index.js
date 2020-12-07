@@ -4,6 +4,14 @@ import Vue from "vue";
 
 import Vuex from "vuex";
 
+import dayjs from "dayjs";
+import timezone from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
+dayjs.extend(timezone);
+dayjs.extend(utc);
+
+console.log(dayjs.tz.guess());
+
 // https://www.npmjs.com/package/axios
 
 // Import axios/index.js singleton instance
@@ -23,6 +31,7 @@ export default new Vuex.Store({
     employees: [],
     availabletimes: [],
     events: [],
+    checkedTime: null,
   },
 
   // https://vuex.vuejs.org/guide/mutations.html
@@ -42,6 +51,9 @@ export default new Vuex.Store({
     },
     setEvents(state, events) {
       state.events = events;
+    },
+    setCheckedTime(state, checkedTime) {
+      state.checkedTime = checkedTime;
     },
     setAvailableTimes(state, availabletimes) {
       state.availabletimes = availabletimes;
@@ -164,6 +176,8 @@ export default new Vuex.Store({
       state.products.filter((product) => product.checked),
     CheckedEmployees: (state) =>
       state.employees.find((employee) => employee.checked),
+    CheckedAvailableTimes: (state) =>
+      state.availabletimes.find((availabletime) => availabletime.checked),
     CheckedServicePrice: (state, getters) =>
       getters.CheckedServices.map((element) => element.Price).reduce(
         (a, b) => a + b
