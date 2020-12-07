@@ -10,10 +10,17 @@
       </div>
       <input type="checkbox" name="selected" id="" v-model="employee.checked" />
     </div>
-    <input type="button" id="knap" value="TRYK HER" v-on:click="test123" />
     <input type="date" id="date" @blur="test123" />
-    <div v-for="(availabletime, key) in AvailableTimes" :key="key">
-      {{ availabletime }}
+    <div class="test">
+      <div
+        class="time"
+        v-for="(availabletime, key) in AvailableTimes"
+        :key="key"
+      >
+        <a href="">
+          {{ availabletime }}
+        </a>
+      </div>
     </div>
   </div>
 </template>
@@ -25,13 +32,13 @@ export default {
   methods: {
     ...mapActions(["GetEvents"]),
     ...mapActions(["getAvailableTimes"]),
-    test123: function () {
+    test123: function() {
       this.getAvailableTimes(document.getElementById("date").value);
       document.getElementById("knap").value = document.getElementById(
         "date"
       ).value;
     },
-    booktime: function () {
+    booktime: function() {
       var booking = {
         starttime: "12-01-2020 13:30:00",
         services: this.CheckedServices,
@@ -67,10 +74,11 @@ export default {
 div.time {
   border-radius: 50px;
   text-align: center;
-  width: 60px;
-  border: 1px solid black;
+  width: auto;
   padding: 5px;
   margin: 5px;
-  background-color: rgba(0, 0, 0, 0.137);
+  background-color: rgba(255, 255, 255, 0.336);
+  display: inline-flex;
+  box-shadow: -1px 0px 4px 0px rgba(0, 0, 0, 0.27);
 }
 </style>
