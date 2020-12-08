@@ -75,9 +75,7 @@
           </tbody>
         </table>
       </div>
-      <div class="checkout">
-        <Checked />
-      </div>
+      <Checked />
     </div>
     <router-link to="/Booking/Employees">Next, i think</router-link>
     <br />

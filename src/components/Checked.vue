@@ -1,6 +1,7 @@
 <template>
   <div class="checkout">
     <div v-if="CheckedServices.length > 0">
+      <div class="checkoutheader">Services</div>
       <div v-for="(service, key) in CheckedServices" :key="key">
         {{ service.Title }}
       </div>
@@ -8,24 +9,29 @@
       <div>{{ CheckedServices ? CheckedServiceDuration : "0.00" }}</div>
     </div>
     <div v-if="CheckedProducts.length > 0">
+      <div class="checkoutheader">Produkter</div>
       <div v-for="(product, key) in CheckedProducts" :key="key">
         {{ product.Title }}
       </div>
       <div>{{ CheckedProducts ? CheckedProductPrice : "0.00" }}</div>
     </div>
     <div v-if="CheckedEmployees != null">
+      <div class="checkoutheader">Medarbejder</div>
       {{ CheckedEmployees.FirstName }}
       <!-- <div>{{ CheckedEmployees ? CheckedProductPrice : "0.00" }}</div> -->
     </div>
-    <div v-if="CheckedEvents != null">
-      {{ CheckedEvents.StartTime }}
-
+    <div v-if="this.$store.state.checkedTime != null">
+      <div class="checkoutheader">Valgt tid</div>
       <!-- <div>{{ CheckedEmployees ? CheckedProductPrice : "0.00" }}</div> -->
     </div>
     <div>
       {{ this.$store.state.checkedTime }}
       {{ this.$store.state.selecteddate }}
     </div>
+    <div v-if="CheckedProducts.length && CheckedServices.length > 0">
+      <div>{{ 0 + CheckedServicePrice + CheckedProductPrice }}</div>
+    </div>
+    <!-- <div>{{ CheckedTotalPrice }}</div> -->
   </div>
 </template>
 
@@ -42,6 +48,7 @@ export default {
       "CheckedServiceDuration",
       "CheckedProductPrice",
       "CheckedEvents",
+      // "CheckedTotalPrice",
     ]),
     // price() {
     //   return this.CheckedServices.map((element) => {
@@ -65,11 +72,15 @@ export default {
 <style scoped>
 .checkout {
   background-color: rgba(255, 255, 255, 0.459);
-  width: 20%;
-  height: 100%;
+  width: 40%;
+  height: 50%;
   margin: 5px auto;
   border-radius: 50px;
   box-shadow: 0px 0px 20px 0px rgb(0, 0, 0.2);
   padding: 100px;
+  line-height: 20px;
+}
+.checkoutheader {
+  color: red;
 }
 </style>

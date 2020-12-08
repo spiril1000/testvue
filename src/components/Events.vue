@@ -25,7 +25,6 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import axios from "../axios/index.js";
 import dayjs from "dayjs";
 import checked from "./Checked";
 export default {
@@ -40,18 +39,18 @@ export default {
         "date"
       ).value;
     },
-    booktime: function () {
-      var booking = {
-        starttime: "12-01-2020 13:30:00",
-        services: this.CheckedServices,
-        products: this.CheckedProducts,
-        employee: this.CheckedEmployees,
-        duration: this.CheckedServiceDuration,
-        totalprice: this.CheckedProductPrice + this.CheckedServicePrice,
-        comment: "Dette er en test kommentar",
-      };
-      axios.post("/bookings", booking);
-    },
+    // booktime: function () {
+    //   var booking = {
+    //     starttime: "this.$store.state.checkedtime",
+    //     services: this.CheckedServices,
+    //     products: this.CheckedProducts,
+    //     employee: this.CheckedEmployees,
+    //     duration: this.CheckedServiceDuration,
+    //     totalprice: this.CheckedProductPrice + this.CheckedServicePrice,
+    //     comment: "Dette er en test kommentar",
+    //   };
+    //   axios.post("/bookings", booking);
+    // },
   },
   mounted() {
     var time = new dayjs();
@@ -75,11 +74,30 @@ export default {
         return this.$store.state.checkedTime;
       },
       set(value) {
-        var newdate = new Date(document.getElementById("date").value);
-        var newnewdate = new Date(newdate.toISOString().split("T")[0]);
-        var targetdate = new Date(newnewdate + value);
-
-        this.$store.commit("setCheckedTime", targetdate);
+        var newdate = document.getElementById("date").value;
+        console.log(newdate);
+        var workingdate = new Date(newdate + "T" + value);
+        console.log(value);
+        console.log(workingdate);
+        // var newnewdate = new Date(newdate.toISOString().split("T")[0]);
+        // var targetdate = new Date(newnewdate + value);
+        // newdate.setTime(newdate.getTime() + value);
+        var curr_month = workingdate.getMonth() + 1; //Months are zero based
+        var curr_date = workingdate.getDate();
+        var curr_year = workingdate.getFullYear();
+        var curr_hour = workingdate.getHours();
+        var curr_miunt = workingdate.getMinutes();
+        var curr_time =
+          curr_month +
+          "-" +
+          curr_date +
+          "-" +
+          curr_year +
+          " " +
+          curr_hour +
+          ":" +
+          curr_miunt;
+        this.$store.commit("setCheckedTime", curr_time);
       },
     },
   },

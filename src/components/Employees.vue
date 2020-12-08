@@ -48,7 +48,7 @@ export default {
   height: 30%;
   padding: 10px;
   text-align: center;
-  line-height: 75px;
+  line-height: 25px;
   /* font-size: 30px; */
 }
 </style>

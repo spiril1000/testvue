@@ -13,6 +13,7 @@
 <script>
 import Checked from "../components/Checked.vue";
 import axios from "../axios/index.js";
+import { mapGetters } from "vuex";
 
 export default {
   components: {
@@ -20,8 +21,9 @@ export default {
   },
   methods: {
     booktime: function () {
+      console.log(this.CheckedTime);
       var booking = {
-        starttime: "12-01-2020 13:30:00",
+        starttime: this.CheckedTime + ":00",
         services: this.CheckedServices,
         products: this.CheckedProducts,
         employee: this.CheckedEmployees,
@@ -31,6 +33,18 @@ export default {
       };
       axios.post("/bookings", booking);
     },
+  },
+  computed: {
+    ...mapGetters([
+      "CheckedTime",
+      "AvailableTimes",
+      "CheckedServices",
+      "CheckedProducts",
+      "CheckedEmployees",
+      "CheckedServicePrice",
+      "CheckedServiceDuration",
+      "CheckedProductPrice",
+    ]),
   },
 };
 </script>
