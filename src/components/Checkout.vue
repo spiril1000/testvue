@@ -20,16 +20,17 @@ export default {
     Checked,
   },
   methods: {
-    booktime: function () {
+    booktime: function() {
       console.log(this.CheckedTime);
       var booking = {
         starttime: this.CheckedTime + ":00",
         services: this.CheckedServices,
         products: this.CheckedProducts,
-        employee: this.CheckedEmployees,
+        employeeId: 1,
         duration: this.CheckedServiceDuration,
         totalprice: this.CheckedProductPrice + this.CheckedServicePrice,
         comment: "Dette er en test kommentar",
+        userId: 2,
       };
       axios.post("/bookings", booking);
     },
@@ -49,5 +50,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

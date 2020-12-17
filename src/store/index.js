@@ -100,12 +100,12 @@ export default new Vuex.Store({
     },
     async getAvailableTimes({ commit, getters }, selecteddate) {
       var data = {
-        employeeId: this.state.employees,
+        employeeId: 1,
         selecteddate: selecteddate,
         duration: getters.CheckedServiceDuration,
       };
       try {
-        const response = await axios.post("/Events", data);
+        const response = await axios.post("/bookings/availabletimes", data);
         // .then((response) => {
         commit("setAvailableTimes", response.data);
       } catch (error) {
