@@ -4,11 +4,12 @@ import Login from "../views/Login.vue";
 import Users from "../views/Users";
 import Home from "../views/Home";
 import Register from "../views/Register";
-import Services from "../components/Services";
-import Products from "../components/Products";
-import Employees from "../components/Employees";
-import Events from "../components/Events";
-import Checkout from "../components/Checkout";
+import Services from "../views/Services";
+import Products from "../views/Products";
+import Employees from "../views/Employees";
+import Events from "../views/Events";
+import Checkout from "../views/Checkout";
+import UserPage from "../views/UserPage";
 
 Vue.use(VueRouter);
 
@@ -19,6 +20,11 @@ const routes = [
     path: "/Booking/Checkout",
     name: "Checkout",
     component: Checkout,
+  },
+  {
+    path: "/UserPage",
+    name: "UserPage",
+    component: UserPage,
   },
   {
     path: "/Booking/Events",

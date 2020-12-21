@@ -18,17 +18,19 @@
         </svg>
       </a>
       <ul>
-        <!-- use router-link component for navigation. -->
-        <!-- specify the link by passing the `to` prop. -->
         <!-- `<router-link>` will be rendered as an `<a>` tag by default -->
         <li><router-link to="/Users">Users</router-link></li>
         <li><router-link to="/Booking">Booking</router-link></li>
-        <li><a href="/">Link</a></li>
-        <li><a href="/">Link</a></li>
-        <li><a href="/">Link</a></li>
       </ul>
       <ul id="login">
-        <li><router-link to="/Login">Login</router-link></li>
+        <li v-if="this.$store.state.user != null">
+          <router-link to="/UserPage">{{
+            this.$store.state.user.FirstName
+          }}</router-link>
+        </li>
+        <li>
+          <router-link to="/Login">Login</router-link>
+        </li>
         <li><router-link to="/Register">Register</router-link></li>
       </ul>
     </nav>
@@ -36,7 +38,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  computed: {
+    isLoggedIn() {
+      return sessionStorage.getItem("Token");
+    },
+  },
+};
 </script>
 
 // scoped!
@@ -73,6 +81,12 @@ header > nav > ul > li {
   line-height: 40px;
 }
 li > a {
+  color: #daa77a;
+  padding: 0 20px;
+  display: block;
+  height: 100%;
+}
+li > div {
   color: #daa77a;
   padding: 0 20px;
   display: block;

@@ -15,9 +15,9 @@
       </div>
       <div>{{ CheckedProducts ? CheckedProductPrice : "0.00" }}</div>
     </div>
-    <div v-if="CheckedEmployees != null">
+    <div v-if="this.$store.state.employee != null">
       <div class="checkoutheader">Medarbejder</div>
-      {{ CheckedEmployees.FirstName }}
+      {{ this.$store.state.employee.FirstName }}
       <!-- <div>{{ CheckedEmployees ? CheckedProductPrice : "0.00" }}</div> -->
     </div>
     <div v-if="this.$store.state.checkedTime != null">
@@ -48,6 +48,7 @@ export default {
       "CheckedServiceDuration",
       "CheckedProductPrice",
       "CheckedEvents",
+      "Employee",
       // "CheckedTotalPrice",
     ]),
     // price() {

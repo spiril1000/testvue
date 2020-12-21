@@ -68,6 +68,7 @@ export default {
         Password: this.password,
       });
       await axios.post("/users", user);
+      this.$router.push("/Login");
     },
   },
 };

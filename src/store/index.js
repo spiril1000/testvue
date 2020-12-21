@@ -3,7 +3,7 @@ import Vue from "vue";
 // https://vuex.vuejs.org/
 
 import Vuex from "vuex";
-
+import router from "../router/index";
 import dayjs from "dayjs";
 import timezone from "dayjs/plugin/timezone";
 import utc from "dayjs/plugin/utc";
@@ -29,6 +29,8 @@ export default new Vuex.Store({
     services: [],
     products: [],
     employees: [],
+    userbookings: [],
+    employee: null,
     availabletimes: [],
     events: [],
     checkedTime: null,
@@ -52,6 +54,9 @@ export default new Vuex.Store({
     setEvents(state, events) {
       state.events = events;
     },
+    setUserBookings(state, bookings) {
+      state.userbookings = bookings;
+    },
     setCheckedTime(state, checkedTime) {
       state.checkedTime = checkedTime;
     },
@@ -60,6 +65,9 @@ export default new Vuex.Store({
     },
     setEmployees(state, employees) {
       state.employees = employees;
+    },
+    setEmployee(state, employee) {
+      state.employee = employee;
     },
     setToken(state, token) {
       state.token = token;
@@ -78,7 +86,7 @@ export default new Vuex.Store({
         commit("setUsers", response.data);
       } catch (error) {
         console.log(error);
-        this.$router.push("/login");
+        router.push("/login");
       }
     },
     // OBS
@@ -94,7 +102,7 @@ export default new Vuex.Store({
           commit("setServices", response.data);
         } catch (error) {
           console.log(error);
-          this.$router.push("/login");
+          router.push("/login");
         }
       }
     },
@@ -110,7 +118,7 @@ export default new Vuex.Store({
         commit("setAvailableTimes", response.data);
       } catch (error) {
         console.log(error);
-        this.$router.push("/login");
+        router.push("/login");
       }
     },
     // This is the right way to do things
@@ -125,7 +133,7 @@ export default new Vuex.Store({
           commit("setProducts", response.data);
         } catch (error) {
           console.log(error);
-          this.$router.push("/login");
+          router.push("/login");
         }
       }
     },
@@ -140,7 +148,7 @@ export default new Vuex.Store({
           commit("setEmployees", response.data);
         } catch (error) {
           console.log(error);
-          this.$router.push("/login");
+          router.push("/login");
         }
       }
     },
@@ -154,8 +162,28 @@ export default new Vuex.Store({
           });
         } catch (error) {
           console.log(error);
-          this.$router.push("/login");
+          router.push("/login");
         }
+      }
+    },
+    async getUserBookings({ commit }) {
+      try {
+        const response = await axios.get("/bookings/mybookings");
+        commit("setUserBookings", response.data);
+      } catch (error) {
+        console.log(error);
+        router.push("/login");
+      }
+    },
+    async cancelBooking({ commit }, booking) {
+      var deleteString = "/bookings/mybookings/" + booking.BookingId;
+      try {
+        axios.delete(deleteString);
+        const response = await axios.get("/bookings/mybookings");
+        commit("setUserBookings", response.data);
+      } catch (error) {
+        console.log(error);
+        router.push("/login");
       }
     },
   },
@@ -164,19 +192,20 @@ export default new Vuex.Store({
   // () ?? return??
   getters: {
     Users: (state) => state.users,
+    UserBookings: (state) => state.userbookings,
     Services: (state) => state.services,
     CheckedTime: (state) => state.checkedTime,
     AvailableTimes: (state) => state.availabletimes,
     Products: (state) => state.products,
     Employees: (state) => state.employees,
+    Employee: (state) => state.employee,
     Events: (state) => state.events,
     CheckedServices: (state) =>
       state.services.filter((service) => service.checked),
     CheckedEvents: (state) => state.events.filter((events) => events.checked),
     CheckedProducts: (state) =>
       state.products.filter((product) => product.checked),
-    CheckedEmployees: (state) =>
-      state.employees.find((employee) => employee.checked),
+    CheckedEmployees: (state) => state.employee,
     CheckedAvailableTimes: (state) =>
       state.availabletimes.find((availabletime) => availabletime.checked),
     CheckedServicePrice: (state, getters) =>

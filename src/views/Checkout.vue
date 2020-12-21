@@ -20,19 +20,20 @@ export default {
     Checked,
   },
   methods: {
-    booktime: function() {
+    booktime: async function() {
       console.log(this.CheckedTime);
       var booking = {
         starttime: this.CheckedTime + ":00",
         services: this.CheckedServices,
         products: this.CheckedProducts,
-        employeeId: 1,
+        employeeId: this.$store.state.employee.EmployeeId,
         duration: this.CheckedServiceDuration,
         totalprice: this.CheckedProductPrice + this.CheckedServicePrice,
-        comment: "Dette er en test kommentar",
-        userId: 2,
+        comment: "Dette er en booking fra web klienten.",
+        userId: this.$store.state.user.UserId,
       };
-      axios.post("/bookings", booking);
+      await axios.post("/bookings", booking);
+      this.$router.push("/UserPage");
     },
   },
   computed: {

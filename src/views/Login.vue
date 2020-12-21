@@ -48,8 +48,11 @@ export default {
           sessionStorage.setItem("Token", response.data.access_token);
           axios.defaults.headers.common["Authorization"] =
             "Bearer " + response.data.access_token;
+          const user = await (await axios.get("/users/myuser")).data;
+          this.$store.commit("setUser", user);
+
           // setTimeout(() => {
-          await vm.$router.push("/Users");
+          await vm.$router.push("/UserPage");
           // }, 2000);
         }
       } catch (error) {

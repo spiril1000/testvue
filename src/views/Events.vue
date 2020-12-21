@@ -26,14 +26,14 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import dayjs from "dayjs";
-import checked from "./Checked";
+import checked from "../components/Checked";
 export default {
   components: {
     checked,
   },
   methods: {
     ...mapActions(["getAvailableTimes"]),
-    test123: function () {
+    test123: function() {
       this.getAvailableTimes(document.getElementById("date").value);
       document.getElementById("knap").value = document.getElementById(
         "date"
@@ -54,7 +54,7 @@ export default {
   },
   mounted() {
     var time = new dayjs();
-
+    document.getElementById("date").set = time;
     this.getAvailableTimes(time);
     document.getElementById("date").min = new Date().toISOString();
     // this.getEvent();
@@ -75,10 +75,7 @@ export default {
       },
       set(value) {
         var newdate = document.getElementById("date").value;
-        console.log(newdate);
         var workingdate = new Date(newdate + "T" + value);
-        console.log(value);
-        console.log(workingdate);
         // var newnewdate = new Date(newdate.toISOString().split("T")[0]);
         // var targetdate = new Date(newnewdate + value);
         // newdate.setTime(newdate.getTime() + value);

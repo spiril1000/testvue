@@ -7,10 +7,11 @@
           <div>{{ employee.Biography }}</div>
         </div>
         <input
-          type="checkbox"
+          type="radio"
           name="selected"
-          id=""
-          v-model="employee.checked"
+          :value="employee"
+          v-model="pickedEmployee"
+          v-on:input="selectEmployee"
         />
       </div>
       <Checked />
@@ -25,14 +26,26 @@ import { mapGetters, mapActions } from "vuex";
 import Checked from "../components/Checked.vue";
 export default {
   components: { Checked },
+  props: ["pickedEmployee"],
   methods: {
     ...mapActions(["getEmployees"]),
+    selectEmployee: function() {
+      this.$store.commit("setEmployee", this.$props.pickedEmployee);
+    },
   },
   computed: {
     ...mapGetters(["Employees"]),
   },
   mounted() {
     this.getEmployees();
+  },
+  pickedEmployee: {
+    get() {
+      return this.$store.state.employee;
+    },
+    set(value) {
+      this.$store.commit("setEmployee", value);
+    },
   },
 };
 </script>
